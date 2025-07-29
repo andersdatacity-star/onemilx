@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OneMilX Dashboard</title>
+</head>
+<body>
+    <h1>OneMilX Strategy Control Panel</h1>
+    <table border="1">
+        <tr><th>Strategy</th><th>Status</th><th>Control</th></tr>
+        {% for name, data in strategies.items() %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ "Running" if data.running else "Stopped" }}</td>
+            <td>
+                {% if not data.running %}
+                <a href="/start/{{ name }}">Start</a>
+                {% else %}
+                <a href="/stop/{{ name }}">Stop</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
